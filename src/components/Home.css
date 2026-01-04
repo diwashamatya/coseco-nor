@@ -1,0 +1,104 @@
+.hero-container {
+  background-color: #121417;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  color: #e0e0e0;
+}
+
+/* --- Text Entrance Animations --- */
+.hero-text {
+  font-size: clamp(3rem, 8vw, 8rem);
+  font-weight: 800;
+  line-height: 0.95;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+}
+
+.line {
+  display: block;
+  opacity: 0;
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 1s ease;
+}
+
+.line-left { transform: translateX(-100px); }
+.line-right { transform: translateX(100px); }
+.indent { margin-left: 150px; }
+
+/* Triggered by React useEffect */
+.hero-text.animate .line {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* --- Bubble Glass Effect --- */
+.bubble-wrapper {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  z-index: 10;
+}
+
+.bubble-glass-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%; /* This clips the blur */
+  overflow: hidden;    /* Essential: keeps blur inside the circle */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.bubble-blur-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(0px); /* Start clear */
+  transition: backdrop-filter 0.4s ease, background 0.4s ease;
+  z-index: 1;
+}
+
+.bubble-wrapper:hover .bubble-blur-layer {
+  backdrop-filter: blur(15px); /* Blur only happens inside this circle */
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.circle-outline {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  z-index: 3; /* Above the blur */
+  pointer-events: none;
+}
+
+.bubble-label {
+  position: relative;
+  z-index: 4;
+  color: white;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-align: center;
+  width: 60%;
+  font-weight: 500;
+}
+
+/* --- Floating Keyframes --- */
+.bubble-top { top: 10%; right: 35%; animation: float 10s infinite ease-in-out; }
+.bubble-left { top: 40%; left: 15%; animation: float 12s infinite ease-in-out reverse; }
+.bubble-bottom { bottom: 10%; right: 10%; animation: float 14s infinite ease-in-out 1s; }
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(20px, -30px) rotate(2deg); }
+  66% { transform: translate(-10px, 15px) rotate(-1deg); }
+}

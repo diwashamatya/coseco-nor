@@ -1,0 +1,168 @@
+/* =====================
+   ROOT VARIABLES
+===================== */
+:root {
+  --bg-dark: #0a0a0a;
+  --text-white: #ffffff;
+  --text-grey: #9a9a9a;
+  --glass-bg: rgba(255, 255, 255, 0.06);
+  --glass-border: rgba(255, 255, 255, 0.18);
+
+  --radius: 10px;
+  --nav-offset: 20px;
+}
+
+/* =====================
+   BASE
+===================== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg-dark);
+  color: var(--text-white);
+  font-family: Inter, system-ui, sans-serif;
+}
+
+.landing-container {
+  min-height: 100vh;
+  padding: 0 50px;
+}
+
+/* =====================
+   FLOATING NAVBAR (FIXED & CLEAN)
+===================== */
+.navbar-floating {
+  position: fixed;
+  top: var(--nav-offset);
+  left: var(--nav-offset);
+  right: var(--nav-offset);
+
+  height: 74px;
+  padding: 0 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-radius: var(--radius);
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+
+  z-index: 1000;
+}
+
+/* =====================
+   LOGO
+===================== */
+.nav-logo {
+  height: 80%;
+  border-radius: 10% ;
+  
+}
+
+/* =====================
+   NAV LINKS (FIXED ISSUE)
+===================== */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  /* PREVENT BREAKING */
+  white-space: nowrap;
+}
+
+.nav-links li {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--text-white);
+  opacity: 0.85;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.nav-links li:hover {
+  opacity: 1;
+}
+
+/* =====================
+   HERO SECTION
+===================== */
+.hero-content {
+  padding-top: 150px;
+  display: flex;
+  justify-content: space-between;
+  gap: 60px;
+}
+
+/* =====================
+   TEXT SECTION
+===================== */
+.subtitle {
+  color: var(--text-grey);
+  letter-spacing: 4px;
+  font-size: 0.75rem;
+}
+
+.main-title {
+  font-size: 4rem;
+  line-height: 1.1;
+  font-weight: 500;
+  margin-top: 20px;
+}
+
+/* =====================
+   VERTICAL LABELS
+===================== */
+.vertical-labels {
+  border-left: 1px solid #333;
+  padding-left: 30px;
+}
+
+.label-item {
+  margin-bottom: 40px;
+  font-size: 0.75rem;
+  color: var(--text-grey);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* =====================
+   FOOTER
+===================== */
+.hero-footer {
+  margin-top: 120px;
+  padding: 40px 0;
+  border-top: 1px solid #333;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  gap: 40px;
+}
+
+.hero-footer p,
+.hero-footer li {
+  font-size: 0.85rem;
+  color: var(--text-grey);
+}
+
+.hero-footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.hero-footer .label {
+  color: white;
+  margin-bottom: 10px;
+}

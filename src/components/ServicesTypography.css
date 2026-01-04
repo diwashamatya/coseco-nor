@@ -1,0 +1,95 @@
+/* ================================
+   SERVICES TYPOGRAPHY – RIBBIT STYLE
+================================ */
+
+.services-section {
+  width: 100%;
+  min-height: 100vh;
+  background: #0b0b0b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 20px;
+  font-family: "Inter", sans-serif;
+}
+
+.services-wrapper {
+  width: 100%;
+  max-width: 1100px;
+}
+
+/* TITLE */
+.services-title {
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 60px;
+  letter-spacing: -0.02em;
+}
+
+/* LIST */
+.services-list {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+/* ITEM */
+.service-item {
+  display: flex;
+  align-items: baseline;
+  gap: 28px;
+  cursor: default;
+}
+
+/* INDEX */
+.service-index {
+  font-size: 1rem;
+  color: #6b6b6b;
+  min-width: 32px;
+}
+
+/* TEXT */
+.service-text {
+  font-size: clamp(1.6rem, 3vw, 2.6rem);
+  font-weight: 600;
+  color: #eaeaea;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* HOVER EFFECT – RIBBIT STYLE */
+.service-item:hover .service-text {
+  color: #ffffff;
+  transform: translateX(6px);
+}
+
+/* SUBTLE LINE */
+.service-item::after {
+  content: "";
+  display: block;
+  height: 1px;
+  flex: 1;
+  margin-left: 20px;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.15),
+    rgba(255, 255, 255, 0)
+  );
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .services-section {
+    padding: 80px 16px;
+  }
+
+  .services-list {
+    gap: 28px;
+  }
+
+  .service-item::after {
+    display: none;
+  }
+}

@@ -1,0 +1,388 @@
+/* animations.css */
+
+/* Global Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Header Animation */
+header {
+  animation: slideDown 0.8s ease-out;
+}
+
+header h1 {
+  animation: slideUp 0.8s ease-out 0.2s both;
+}
+
+header p {
+  animation: slideUp 0.8s ease-out 0.4s both;
+}
+
+/* Location Filter Animation */
+.flex-wrap {
+  animation: fadeIn 0.6s ease-out 0.6s both;
+}
+
+.flex-wrap button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.flex-wrap button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%);
+  transform-origin: 50% 50%;
+}
+
+.flex-wrap button:active::after {
+  animation: ripple 0.6s ease-out;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 0.5;
+  }
+  20% {
+    transform: scale(25, 25);
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(40, 40);
+  }
+}
+
+/* Image Container Fix - Add fixed dimensions */
+.relative.h-64 {
+  height: 256px; /* Fixed height */
+  width: 100%; /* Full width */
+  overflow: hidden;
+  position: relative;
+}
+
+/* Image Styles - Fixed size and optimized */
+.relative.h-64 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* This will crop images nicely */
+  object-position: center;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  display: block; /* Remove extra space below image */
+}
+
+.relative.h-64:hover img {
+  transform: scale(1.15) rotate(1deg);
+}
+
+/* Add aspect ratio container for better image control */
+@media (min-width: 768px) {
+  .relative.h-64 {
+    aspect-ratio: 1 / 1; /* Square images on larger screens */
+    height: auto;
+  }
+}
+
+/* Team Card Animations */
+.grid {
+  animation: fadeIn 0.8s ease-out 0.8s both;
+}
+
+.grid > div {
+  animation: slideUp 0.5s ease-out both;
+  animation-play-state: paused;
+}
+
+/* Staggered animations for team members */
+.grid > div:nth-child(1) { animation-delay: 0.1s; }
+.grid > div:nth-child(2) { animation-delay: 0.2s; }
+.grid > div:nth-child(3) { animation-delay: 0.3s; }
+.grid > div:nth-child(4) { animation-delay: 0.4s; }
+.grid > div:nth-child(5) { animation-delay: 0.5s; }
+.grid > div:nth-child(6) { animation-delay: 0.6s; }
+.grid > div:nth-child(7) { animation-delay: 0.7s; }
+.grid > div:nth-child(8) { animation-delay: 0.8s; }
+.grid > div:nth-child(9) { animation-delay: 0.9s; }
+.grid > div:nth-child(10) { animation-delay: 1.0s; }
+.grid > div:nth-child(11) { animation-delay: 1.1s; }
+.grid > div:nth-child(12) { animation-delay: 1.2s; }
+
+.grid:hover > div {
+  animation-play-state: running;
+}
+
+/* Card Hover Effects */
+.bg-white.rounded-2xl {
+  position: relative;
+  z-index: 1;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  overflow: hidden;
+}
+
+.bg-white.rounded-2xl::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 1rem;
+  background: linear-gradient(45deg, transparent 0%, rgba(59, 130, 246, 0.1) 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+}
+
+.bg-white.rounded-2xl:hover::before {
+  opacity: 1;
+}
+
+/* Role Badge Animation */
+.inline-block.px-3.py-1 {
+  animation: slideUp 0.5s ease-out 0.3s both;
+  transition: all 0.3s ease;
+}
+
+.bg-white.rounded-2xl:hover .inline-block.px-3.py-1 {
+  animation: pulse 1s infinite;
+  background: linear-gradient(45deg, #2563eb, #3b82f6, #60a5fa);
+  background-size: 200% 200%;
+  animation: gradientShift 2s ease infinite;
+}
+
+/* Contact Links Animation */
+.flex.items-center.justify-between a {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  padding: 4px 0;
+}
+
+.flex.items-center.justify-between a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: currentColor;
+  transition: width 0.3s ease;
+}
+
+.flex.items-center.justify-between a:hover::after {
+  width: 100%;
+}
+
+/* Global Offices Section Animation */
+.bg-gradient-to-b {
+  animation: fadeIn 1s ease-out 1s both;
+}
+
+.text-center.mb-12 h2 {
+  animation: slideUp 0.6s ease-out 1.2s both;
+}
+
+.text-center.mb-12 p {
+  animation: slideUp 0.6s ease-out 1.4s both;
+}
+
+/* Office Cards Stagger Animation */
+.grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-4 > div {
+  animation: slideUp 0.5s ease-out both;
+  animation-play-state: paused;
+}
+
+.grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-4 > div:nth-child(1) { animation-delay: 1.6s; }
+.grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-4 > div:nth-child(2) { animation-delay: 1.7s; }
+.grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-4 > div:nth-child(3) { animation-delay: 1.8s; }
+.grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-4 > div:nth-child(4) { animation-delay: 1.9s; }
+
+/* Footer Animation */
+footer {
+  animation: fadeIn 0.8s ease-out 2s both;
+}
+
+/* Social Media Icon Animation */
+footer a {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+footer a::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+footer a:hover::before {
+  width: 100px;
+  height: 100px;
+}
+
+/* Image Loading Skeleton */
+.image-loading {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200px 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.image-loaded {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #3b82f6, #60a5fa);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #2563eb, #3b82f6);
+}
+
+/* Page Load Animation */
+@keyframes pageLoad {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.min-h-screen.bg-gradient-to-b {
+  animation: pageLoad 1s ease-out;
+}
+
+/* Gradient Animation for Header */
+.bg-gradient-to-r.from-blue-600.to-blue-800 {
+  background-size: 200% 200%;
+  animation: gradientShift 5s ease infinite;
+}
+
+/* Responsive Image Adjustments */
+@media (max-width: 768px) {
+  .relative.h-64 {
+    height: 200px; /* Slightly smaller on mobile */
+  }
+  
+  .grid > div {
+    animation-delay: 0.1s !important;
+  }
+  
+  .grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-4 > div {
+    animation-delay: 0.2s !important;
+  }
+}
+
+/* Optimize Image Loading */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Lazy Loading Animation */
+img[loading="lazy"] {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+img[loading="lazy"].loaded {
+  opacity: 1;
+}

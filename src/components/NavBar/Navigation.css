@@ -1,0 +1,104 @@
+/* Base Page Style */
+body {
+  margin: 0;
+  background-color: #000;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+/* Navbar Top Row */
+.navbar-container {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 40px;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  z-index: 1000;
+}
+
+.nav-logo {
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+/* THE VISIBLE BURGER ICON */
+.burger-icon {
+  width: 40px;
+  height: 30px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  z-index: 1001; /* Keep above overlay */
+  border: 1px solid red; /* TEMPORARY: Remove this once you see it */
+}
+
+.bar {
+  width: 100%;
+  height: 2px;
+  background-color: #fff; /* White bars on black background */
+  transition: 0.4s;
+}
+
+/* Burger Animation to 'X' */
+.burger-icon.active .bar:nth-child(1) {
+  transform: translateY(5px) rotate(45deg);
+}
+.burger-icon.active .bar:nth-child(2) {
+  transform: translateY(-5px) rotate(-45deg);
+}
+
+/* THE FULL PAGE MENU OVERLAY */
+.full-page-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #111; /* Dark overlay */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* Initial State (Hidden) */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-100%);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.full-page-menu.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Menu Layout Styles */
+.menu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+}
+
+.section-title {
+  color: #666;
+  text-transform: uppercase;
+  font-size: 12px;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.menu-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.menu-section li {
+  font-size: 40px;
+  font-weight: bold;
+  margin: 10px 0;
+  cursor: pointer;
+}
