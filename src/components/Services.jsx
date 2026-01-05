@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {  motion, AnimatePresence } from "framer-motion";
 import "../styles/Services.css";
-
+import PerspectiveScroll from './PerspectiveScroll'
 const DATA = [
   {
     id: 1,
@@ -33,62 +33,65 @@ export default function LinearGrid() {
   const [selectedId, setSelectedId] = useState(null);
 
   return (
-    <div className="container">
-      <header className="header">
-        <h1>Made for modern teams</h1>
-        <p>Explore our latest blogs and professional services.</p>
-      </header>
+    <>
+      <div className="container">
+        <header className="header">
+          <h1>Made for modern teams</h1>
+          <p>Explore our latest blogs and professional services.</p>
+        </header>
 
-      <div className="grid">
-        {DATA.map((item) => (
-          <motion.div
-            layoutId={`card-${item.id}`}
-            key={item.id}
-            className="card"
-            onClick={() => setSelectedId(item.id)}
-            whileHover={{ scale: 1.02 }}
-          >
-            <div className="card-visual">
-              <img src={item.image} alt={item.title} />
-            </div>
-            <div className="card-content">
-              <motion.h3 layoutId={`title-${item.id}`}>
-                {item.subtitle}
-              </motion.h3>
-              <motion.p>{item.title}</motion.p>
-            </div>
-            <div className="plus-icon">+</div>
-          </motion.div>
-        ))}
-      </div>
-
-      <AnimatePresence>
-        {selectedId && (
-          <div className="modal-overlay" onClick={() => setSelectedId(null)}>
+        <div className="grid">
+          {DATA.map((item) => (
             <motion.div
-              layoutId={`card-${selectedId}`}
-              className="modal-card"
-              onClick={(e) => e.stopPropagation()}
+              layoutId={`card-${item.id}`}
+              key={item.id}
+              className="card"
+              onClick={() => setSelectedId(item.id)}
+              whileHover={{ scale: 1.02 }}
             >
-              <motion.button
-                className="close-btn"
-                onClick={() => setSelectedId(null)}
-              >
-                ✕
-              </motion.button>
-
-              <div className="modal-body">
-                <motion.h3 layoutId={`title-${selectedId}`}>
-                  {DATA.find((i) => i.id === selectedId).subtitle}
-                </motion.h3>
-                <h2>{DATA.find((i) => i.id === selectedId).title}</h2>
-                <p>{DATA.find((i) => i.id === selectedId).content}</p>
-                <button className="cta-button">Read More</button>
+              <div className="card-visual">
+                <img src={item.image} alt={item.title} />
               </div>
+              <div className="card-content">
+                <motion.h3 layoutId={`title-${item.id}`}>
+                  {item.subtitle}
+                </motion.h3>
+                <motion.p>{item.title}</motion.p>
+              </div>
+              <div className="plus-icon">+</div>
             </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
-    </div>
+          ))}
+        </div>
+
+        <AnimatePresence>
+          {selectedId && (
+            <div className="modal-overlay" onClick={() => setSelectedId(null)}>
+              <motion.div
+                layoutId={`card-${selectedId}`}
+                className="modal-card"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <motion.button
+                  className="close-btn"
+                  onClick={() => setSelectedId(null)}
+                >
+                  ✕
+                </motion.button>
+
+                <div className="modal-body">
+                  <motion.h3 layoutId={`title-${selectedId}`}>
+                    {DATA.find((i) => i.id === selectedId).subtitle}
+                  </motion.h3>
+                  <h2>{DATA.find((i) => i.id === selectedId).title}</h2>
+                  <p>{DATA.find((i) => i.id === selectedId).content}</p>
+                  <button className="cta-button">Read More</button>
+                </div>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>
+      </div>
+      <PerspectiveScroll />
+    </>
   );
 }

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Linkedin, Mail, Search, X, MapPin, Briefcase } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { teamData, locations } from "./teamData"; // Ensure these paths match your file structure
+import GlobalPresence from "./Global";
 import "./People.css";
 
 const People = () => {
@@ -184,6 +185,8 @@ const People = () => {
           </div>
         )}
       </AnimatePresence>
+
+      <GlobalPresence />
     </div>
   );
 };

@@ -18,7 +18,7 @@
 }
 
 body {
-  margin: 0;
+  margin-top: 0;
   background: var(--bg-dark);
   color: var(--text-white);
   font-family: Inter, system-ui, sans-serif;

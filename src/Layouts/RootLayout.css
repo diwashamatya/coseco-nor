@@ -1,0 +1,333 @@
+:root {
+  --color-black: #000000;
+  --color-dark: #111111;
+  --color-white: #ffffff;
+  --color-gray: #888888;
+  --color-accent: #00f2ff;
+  /* Glass effect: Lower alpha (0.5) makes it more transparent */
+  --glass-bg: rgba(0, 0, 0, 0.5); 
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  background: var(--color-black);
+  color: var(--color-white);
+  overflow-x: hidden;
+}
+
+.layout-container {
+  min-height: 100vh;
+  position: relative;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 40px;
+  z-index: 1000;
+
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+
+  background: var(--glass-bg); /* Uses your rgba(0, 0, 0, 0.5) */
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Optional: adds a subtle "edge" */
+  /* ------------------------------ */
+
+  transition: opacity 0.3s ease, visibility 0.3s ease, background 0.3s ease;
+}
+
+.navbar.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.navbar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.logo {
+  height: 60px;
+  width: auto;
+  display: block;
+}
+
+/* Desktop Navigation */
+.desktop-nav {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 40px;
+}
+
+.nav-links a {
+  color: var(--color-white);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  position: relative;
+  transition: var(--transition);
+}
+
+.nav-links a:hover, .nav-links a.active {
+  color: var(--color-accent);
+}
+
+
+    .nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Spacing between theme, lang, and burger */
+  margin-left: auto; /* Pushes everything to the right */
+}
+.icon-btn {
+  background: none;
+  border: none;
+  color: white; /* Matches your navbar text */
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* Hover Animation for the new icons */
+.icon-btn:hover {
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+/* Specific animation for Theme (Rotate Sun) */
+.theme-toggle:hover svg {
+  transform: rotate(45deg);
+  transition: transform 0.5s ease;
+}
+
+/* Burger Animation on Hover (from previous step) */
+.burger-btn:hover .line-top { transform: translateY(2px); }
+.burger-btn:hover .line-bot { transform: translateY(-2px); }
+
+/* Ensure icons are visible on mobile */
+
+/* ===== BURGER BUTTON ===== */
+.burger-btn {
+  background: none;
+  border: none;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.burger-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: white; /* Sets the SVG color */
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.burger-svg line {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+}
+
+/* Hover Animations */
+.burger-btn:hover .line-top {
+  transform: translateY(2px);
+}
+
+.burger-btn:hover .line-bot {
+  transform: translateY(-2px);
+}
+
+/* Optional: Make the middle line slightly shorter on hover */
+.burger-btn:hover .line-mid {
+  opacity: 0.7;
+}
+
+/* ===== FULLSCREEN MODAL (THE GLASS LAYER) ===== */
+.fullscreen-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  
+  /* The semi-transparent layer */
+  background: var(--glass-bg) !important;
+  
+  /* The blur effect */
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  
+  /* Remove borders that cut the screen */
+  border: none !important;
+  
+  z-index: 2000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+  overflow-y: auto;
+}
+
+.fullscreen-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Modal Close Button */
+.modal-close-btn {
+  position: fixed;
+  top: 30px;
+  right: 40px;
+  background: transparent !important;
+  border: none !important;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2001;
+  transition: var(--transition);
+}
+
+.modal-close-btn:hover {
+  transform: rotate(90deg);
+  opacity: 0.6;
+}
+
+/* ===== MODAL INTERNAL CONTENT (NO BOXES) ===== */
+.modal-content {
+  width: 100%;
+  min-height: 100vh;
+  padding: 100px 40px;
+  display: flex;
+  flex-direction: column;
+  /* Ensure no background overrides the glass */
+  background: transparent !important;
+  border: none !important;
+}
+
+.modal-logo {
+  margin-bottom: 60px;
+  text-align: left;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  background: transparent !important;
+}
+
+/* Menu Grid - Transparent */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 60px;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  background: transparent !important;
+}
+
+.menu-column {
+  background: transparent !important;
+  display: flex;
+  flex-direction: column;
+}
+
+.column-title {
+  color: var(--color-gray);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  display: block;
+  background: transparent !important;
+  border: none !important;
+}
+
+.column-links {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background: transparent !important;
+}
+
+.column-links a {
+  color: var(--color-white);
+  text-decoration: none;
+  font-size: clamp(32px, 5vw, 64px);
+  font-weight: 800;
+  line-height: 1.1;
+  transition: var(--transition);
+  display: inline-block;
+  width: fit-content;
+  background: transparent !important;
+}
+
+.column-links a:hover {
+  color: var(--color-accent);
+  transform: translateX(10px);
+}
+
+.column-links a.active {
+  color: var(--color-accent);
+}
+
+/* ===== MAIN CONTENT ===== */
+.main-content {
+ padding-top:5%;
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .desktop-nav { display: none; }
+  .menu-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: left;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar { padding: 20px; }
+  .modal-content { padding: 80px 25px; }
+  .modal-close-btn { top: 20px; right: 20px; }
+}
+@media (max-width: 768px) {
+  .nav-actions {
+    gap: 10px;
+  }
+}

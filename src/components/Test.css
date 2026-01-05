@@ -6,9 +6,9 @@
 }
 
 .hero-container {
+  padding-top: 5%;
   background-color: var(--bg-dark);
- 
-  
+  padding-bottom: 10%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -64,8 +64,8 @@
 /* --- BUBBLE GLASS DESIGN --- */
 .bubble-wrapper {
   position: absolute;
-  width: 240px;
-  height: 240px;
+  width: clamp(140px, 20vw, 240px);
+  height: clamp(140px, 20vw, 240px);
   z-index: 10;
   cursor: pointer;
 }
@@ -117,6 +117,7 @@
   position: relative;
   z-index: 5;
   color: white;
+  font-size: clamp(0.6rem, 1vw, 0.75rem); /* Smaller text on small screens */
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.15em;
@@ -125,10 +126,63 @@
 }
 
 /* Floating Animations with different speeds */
-.bubble-top { top: 12%; right: 25%; animation: float 14s infinite ease-in-out; }
-.bubble-left { bottom: 20%; left: 10%; animation: float 18s infinite ease-in-out reverse; }
-.bubble-bottom { bottom: 8%; right: 12%; animation: float 16s infinite ease-in-out 2s; }
+.bubble-top { top: 12%; right: 15%; animation: float 14s infinite ease-in-out; }
+.bubble-left { bottom: 20%; left: 5%; animation: float 18s infinite ease-in-out reverse; }
+.bubble-bottom { bottom: 8%; right: 10%; animation: float 16s infinite ease-in-out 2s; }
 
+/* Tablet (Small Laptops) */
+@media (max-width: 1024px) {
+  .bubble-top { top: 5%; right: 5%; }
+  .bubble-left { bottom: 15%; left: 2%; }
+  .bubble-bottom { bottom: 5%; right: 5%; }
+}
+/* Mobile Devices */
+@media (max-width: 768px) {
+  .hero-container {
+    padding-top: 20%; /* Give text more room at the top */
+    padding-bottom: 25%;
+    flex-direction: column;
+  }
+
+  .bubble-wrapper {
+    /* Hard limit for very small screens */
+    width: 130px;
+    height: 130px;
+  }
+
+  /* Reposition bubbles so they don't cover the main text */
+  .bubble-top { 
+    top: 5%; 
+    right: 10%; 
+  }
+  
+  .bubble-left { 
+    bottom: 10%; 
+    left: 10%; 
+    animation-duration: 10s; /* Faster feel on small screens */
+  }
+
+  /* Hide the third bubble on very small screens to reduce clutter, 
+     or position it behind the text */
+  .bubble-bottom { 
+    display: none; 
+  }
+}
+/* Floating Animation - Reduce movement on mobile to prevent overflow */
+@keyframes float {
+  0%, 100% { transform: translate(0, 0); }
+  33% { transform: translate(15px, -25px); } /* Halved movement for mobile safety */
+  66% { transform: translate(-10px, 10px); }
+}
+
+/* Only use full movement on larger screens */
+@media (min-width: 769px) {
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0); }
+    33% { transform: translate(30px, -50px); }
+    66% { transform: translate(-20px, 20px); }
+  }
+}
 @keyframes float {
   0%, 100% { transform: translate(0, 0); }
   33% { transform: translate(30px, -50px); }

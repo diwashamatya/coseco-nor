@@ -17,7 +17,7 @@ body {
 
 /* 1. Responsive Container */
 .container {
-  max-width: var(--container-max-width);
+  
   margin: 0 auto;
   padding: 40px 20px; /* Reduced padding for mobile */
 }
