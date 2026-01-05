@@ -1,4 +1,4 @@
-import HeaderShowcase from "../components/HeaderShowCase";
+import HeaderShowcase from "../components/HeaderShowcase";
 import Services from "../components/Services";
 import ServicesTypography from "../components/ServicesTypography";
 
