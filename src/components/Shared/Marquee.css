@@ -1,0 +1,412 @@
+/* Marquee Section Styles */
+.marquee-section {
+  padding: 80px 0;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+}
+
+.marquee-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+              radial-gradient(circle at 80% 50%, rgba(168, 85, 247, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Marquee Header - Modern Gradient Design */
+.marquee-header {
+  text-align: center;
+  margin-bottom: 80px;
+  position: relative;
+  padding: 60px 0;
+  overflow: hidden;
+}
+
+/* Gradient Text with Shine Effect */
+.marquee-title {
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 800;
+  margin-bottom: 20px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  position: relative;
+  
+  /* Gradient background for text */
+  background: linear-gradient(
+    135deg,
+    #3b82f6 0%,
+    #8b5cf6 25%,
+    #ec4899 50%,
+    #f59e0b 75%,
+    #10b981 100%
+  );
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  
+  /* Animation */
+  animation: gradientFlow 6s ease infinite;
+  
+  /* Glow effect */
+  text-shadow: 0 5px 30px rgba(59, 130, 246, 0.2);
+  
+  /* Shine effect overlay */
+  position: relative;
+  display: inline-block;
+}
+
+.marquee-title::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transform: skewX(-15deg);
+  animation: shine 3s ease-in-out infinite;
+}
+
+/* Animated Underline */
+.animated-underline {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 12px;
+}
+
+.animated-underline::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+  background-size: 200% 100%;
+  border-radius: 2px;
+  animation: underlineFlow 3s ease-in-out infinite;
+  transform: scaleX(0.8);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+
+.animated-underline:hover::before {
+  transform: scaleX(1);
+}
+
+/* Subtitle with Fade-in Animation */
+.marquee-subtitle {
+  font-size: 1.25rem;
+  color: #a1a1aa;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+  position: relative;
+  padding-top: 20px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s ease forwards 0.5s;
+}
+
+.marquee-subtitle::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+  opacity: 0.5;
+}
+
+/* Decorative Background Elements */
+.marquee-header::before,
+.marquee-header::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.1;
+  z-index: -1;
+  filter: blur(40px);
+}
+
+.marquee-header::before {
+  top: 20%;
+  left: 10%;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
+  animation: float 8s ease-in-out infinite;
+}
+
+.marquee-header::after {
+  bottom: 20%;
+  right: 10%;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, #ec4899 0%, transparent 70%);
+  animation: float 10s ease-in-out infinite reverse;
+}
+
+/* Animations */
+@keyframes gradientFlow {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes underlineFlow {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes shine {
+  0%, 100% {
+    left: -100%;
+  }
+  20%, 80% {
+    left: 100%;
+  }
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) translateX(0) scale(1);
+  }
+  33% {
+    transform: translateY(-20px) translateX(10px) scale(1.1);
+  }
+  66% {
+    transform: translateY(10px) translateX(-10px) scale(0.9);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .marquee-header {
+    padding: 40px 20px;
+    margin-bottom: 60px;
+  }
+  
+  .marquee-title {
+    font-size: 2.5rem;
+  }
+  
+  .marquee-subtitle {
+    font-size: 1.1rem;
+    padding: 0 20px;
+  }
+  
+  .marquee-header::before,
+  .marquee-header::after {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+/* Hover Effects */
+.marquee-title:hover {
+  text-shadow: 0 10px 40px rgba(59, 130, 246, 0.3);
+  transition: text-shadow 0.3s ease;
+}
+
+.marquee-subtitle:hover {
+  color: #ffffff;
+  transition: color 0.3s ease;
+}
+
+
+/* Marquee Container */
+.marquee-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 40px 0;
+}
+
+/* Gradient Fade Effects */
+.marquee-container::before,
+.marquee-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 200px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.marquee-container::before {
+  left: 0;
+  background: linear-gradient(to right, #0f0f0f 0%, transparent 100%);
+}
+
+.marquee-container::after {
+  right: 0;
+  background: linear-gradient(to left, #0f0f0f 0%, transparent 100%);
+}
+
+/* Marquee Track */
+.marquee-track {
+  display: flex;
+  gap: 60px;
+  animation: scroll 40s linear infinite;
+  width: fit-content;
+}
+
+/* Pause animation on hover */
+.marquee-container:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Logo Wrapper */
+.logo-wrapper {
+  flex-shrink: 0;
+  width: 180px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 20px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+/* Animated background gradient on hover */
+.logo-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, 
+    rgba(59, 130, 246, 0.1) 0%, 
+    rgba(168, 85, 247, 0.1) 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.logo-wrapper:hover::before {
+  opacity: 1;
+}
+
+/* Border glow effect on hover */
+.logo-wrapper::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(135deg, #3b82f6, #a855f7);
+  border-radius: 16px;
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.4s ease;
+}
+
+.logo-wrapper:hover::after {
+  opacity: 0.3;
+}
+
+.logo-wrapper:hover {
+  transform: translateY(-8px) scale(1.05);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3),
+              0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Logo Image */
+.logo-wrapper img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: grayscale(100%) brightness(0.9);
+  transition: filter 0.4s ease, transform 0.4s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.logo-wrapper:hover img {
+  filter: grayscale(0%) brightness(1);
+  transform: scale(1.1);
+}
+
+/* Keyframe Animation */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .marquee-section {
+    padding: 60px 0;
+  }
+
+  .marquee-title {
+    font-size: 2rem;
+  }
+
+  .marquee-subtitle {
+    font-size: 1rem;
+  }
+
+  .logo-wrapper {
+    width: 140px;
+    height: 80px;
+    padding: 16px;
+  }
+
+  .marquee-track {
+    gap: 40px;
+    animation-duration: 30s;
+  }
+}
+
+@media (max-width: 480px) {
+  .marquee-title {
+    font-size: 1.75rem;
+  }
+
+  .logo-wrapper {
+    width: 120px;
+    height: 70px;
+    padding: 12px;
+  }
+
+  .marquee-track {
+    gap: 30px;
+  }
+}
