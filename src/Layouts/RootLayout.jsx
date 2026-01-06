@@ -4,7 +4,7 @@ import Coseco from "../../public/images/CosecoLogo.jpg";
 import "./RootLayout.css";
 import Footer from "./Footer";
 
-const RootLayout = () => {
+const RootLayout = ({ children }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -29,13 +29,15 @@ const RootLayout = () => {
     } else {
       document.body.style.overflow = "";
     }
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [isMenuOpen]);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   const closeMenu = () => {
-    // Small delay ensures the Router processes the link click 
+    // Small delay ensures the Router processes the link click
     // before the modal DOM state changes
     setTimeout(() => {
       setIsMenuOpen(false);
@@ -278,9 +280,7 @@ const RootLayout = () => {
         </div>
       </div>
 
-      <main className="main-content">
-        <Outlet />
-      </main>
+      <main className="main-content">{children}</main>
       <Footer />
     </div>
   );

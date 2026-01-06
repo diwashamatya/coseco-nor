@@ -3,7 +3,7 @@ import Services from "../components/Services";
 import ServicesTypography from "../components/ServicesTypography";
 import CosecoServices from "../components/Shared/CosecoServices";
 import PartnersMarquee from "../components/Shared/Marquee";
-
+import RootLayout from "../Layouts/RootLayout";
 import Test from "../components/Test";
 
 

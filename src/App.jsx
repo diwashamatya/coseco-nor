@@ -6,27 +6,21 @@ import People from "./components/People";
 import Services from './components/Services'
 import Contact from "./pages/Contact/Contact";
 
+
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        {/* The RootLayout wraps all these routes */}
-        <Route path="/" element={<RootLayout />}>
-          {/* index means this renders at " / " */}
-          <Route index element={<Hero />} />
-
-          <Route path="about" element={<About />} />
+      <RootLayout>
+        <Routes>
+          {/* No wrapping Route here */}
+          <Route path="/" element={<Hero />} />
+          <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
-          <Route path="team" element={<People />} />
-          <Route path="contact" element={<Contact />} />
-
-
-          <Route path="contact" element={<div>Contact Page Content</div>} />
-
-          {/* Optional: Add a 404 Catch-all */}
+          <Route path="/team" element={<People />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<div>Page Not Found</div>} />
-        </Route>
-      </Routes>
+        </Routes>
+      </RootLayout>
     </BrowserRouter>
   );
 }

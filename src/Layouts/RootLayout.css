@@ -30,7 +30,7 @@ body {
 
 /* ===== NAVBAR ===== */
 .navbar {
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   width: 100%;
@@ -306,9 +306,9 @@ body {
 
 /* ===== MAIN CONTENT ===== */
 .main-content {
- padding-top:5%;
-  position: relative;
-  z-index: 1;
+ padding-top:0;
+
+ 
 }
 
 /* ===== RESPONSIVE ===== */
