@@ -1,7 +1,7 @@
 .showcase-container {
   width: 100%;
-  max-width: 1200px;
-  padding: 30px;
+  max-width: auto ;
+  padding: 60px;
   background: linear-gradient(145deg, #0c0c0e, #1a1a2e);
   font-family: "Inter", sans-serif;
   margin: 0 auto;
@@ -9,6 +9,35 @@
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
+/* Page Title Styles */
+.showcase-header {
+  text-align: center;
+  margin-bottom: var(--space-xxl);
+  animation: modalFadeIn 0.8s ease-out;
+}
+
+.showcase-subtitle {
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.85rem;
+  font-weight: var(--font-weight-medium);
+  color: var(--accent-secondary);
+  margin-bottom: var(--space-sm);
+}
+
+.showcase-main-title {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.1;
+}
+
+.showcase-main-title span {
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
 /* =====================
     HEADER TABS ENHANCED
 ===================== */
