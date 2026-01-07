@@ -210,7 +210,9 @@ body {
 .view-link:hover:after {
   transform: translateX(4px);
 }
-
+.container .modal-overlay{
+  z-index: 99999 !important;
+}
 /* Modal Design - Centered and Wider */
 .modal-overlay {
   position: fixed;

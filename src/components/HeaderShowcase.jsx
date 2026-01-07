@@ -4,28 +4,43 @@ import "./HeaderShowcase.css";
 const headers = [
   {
     id: 1,
-    title: "Defense Reformation",
-    content: "Transforming military operations with AI.",
+    title: "Public Transport",
+    content:
+      "Specialized mobile solutions for public transport operators, streamlining passenger flow and ticketing.",
+    image:
+      "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&q=80&w=800",
   },
   {
     id: 2,
-    title: "Warp Speed",
-    content: "Accelerating industrial manufacturing cycles.",
+    title: "Mobile Payments",
+    content:
+      "Supporting EMV, QR codes, Apple Pay, and Google Pay for a fast and secure commuter experience.",
+    image:
+      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=800",
   },
   {
     id: 3,
-    title: "Working Intelligence",
-    content: "Human-machine teaming for complex tasks.",
+    title: "AFC Solutions",
+    content:
+      "Automated Fare Collection systems designed for small and medium-sized bus and transport operators.",
+    image:
+      "https://images.unsplash.com/photo-1513530534585-c7b1394c6d51?auto=format&fit=crop&q=80&w=800",
   },
   {
     id: 4,
-    title: "DevCon 3",
-    content: "Building the next generation of software.",
+    title: "WizarPOS Partnership",
+    content:
+      "Integrating world-class Android ticket validators with Coseco's proprietary transit software.",
+    image:
+      "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?auto=format&fit=crop&q=80&w=800",
   },
   {
     id: 5,
-    title: "AIPCon 8",
-    content: "Exploring the future of Artificial Intelligence.",
+    title: "Global Mobility",
+    content:
+      "Expanding digital transformation in the transit sector across Europe and global markets.",
+    image:
+      "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&q=80&w=800",
   },
 ];
 
@@ -34,14 +49,13 @@ const HeaderShowcase = () => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const duration = 5000; // 5 seconds per header
-    const intervalTime = 50; // Update every 50ms
+    const duration = 5000;
+    const intervalTime = 50;
     const increment = (intervalTime / duration) * 100;
 
     const timer = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
-          // Move to next header and reset progress
           setActiveIndex((prevIndex) => (prevIndex + 1) % headers.length);
           return 0;
         }
@@ -54,7 +68,7 @@ const HeaderShowcase = () => {
 
   const handleHeaderClick = (index) => {
     setActiveIndex(index);
-    setProgress(0); // Reset progress when manually clicked
+    setProgress(0);
   };
 
   return (
@@ -68,20 +82,33 @@ const HeaderShowcase = () => {
             onClick={() => handleHeaderClick(index)}
           >
             <span className="header-text">{header.title}</span>
-            {/* The Background Filling Animation */}
             <div
               className="fill-bar"
               style={{ width: index === activeIndex ? `${progress}%` : "0%" }}
             />
           </div>
         ))}
-        <button className="see-all-btn">SEE ALL</button>
+        {/* Contact Us button separated from the map loop */}
+        <button
+          className="see-all-btn"
+          onClick={() => (window.location.href = "/contact")}
+        >
+          CONTACT US
+        </button>
       </div>
 
-      {/* Dynamic Content Area (Renders based on active header) */}
+      {/* Dynamic Content Area */}
       <div className="content-render-area">
-        <h2>{headers[activeIndex].title}</h2>
-        <p>{headers[activeIndex].content}</p>
+        <div className="text-side">
+          <h2>{headers[activeIndex].title}</h2>
+          <p>{headers[activeIndex].content}</p>
+        </div>
+        <div className="image-side">
+          <img
+            src={headers[activeIndex].image}
+            alt={headers[activeIndex].title}
+          />
+        </div>
       </div>
     </div>
   );

@@ -5,6 +5,7 @@ import About from "./pages/About/About";
 import People from "./components/People";
 import Services from './components/Services'
 import Contact from "./pages/Contact/Contact";
+import  Blogs from "./pages/Blogs/Blogs"; 
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/team" element={<People />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/blog" element={<Blogs />} />
           <Route path="*" element={<div>Page Not Found</div>} />
         </Routes>
       </RootLayout>

@@ -5,6 +5,9 @@ import CosecoServices from "../components/Shared/CosecoServices";
 import PartnersMarquee from "../components/Shared/Marquee";
 import RootLayout from "../Layouts/RootLayout";
 import Test from "../components/Test";
+import UseCases from "../components/UseCases/UseCases";
+import PerspectiveScroll from "../components/PerspectiveScroll";  
+import Features from "../components/Features/Features";
 
 
 const Hero = () => {
@@ -18,7 +21,10 @@ const Hero = () => {
       
       <HeaderShowcase />
     
-      <ServicesTypography />
+      {/* <ServicesTypography /> */}
+      <PerspectiveScroll />
+      <UseCases />
+      <Features />
      
      
     </>

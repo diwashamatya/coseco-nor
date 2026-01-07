@@ -15,9 +15,9 @@ const PremiumHero = () => {
   }, []);
 
   const bubbles = [
-    { id: 1, label: "MARINE & OFFSHORE", class: "bubble-top" },
-    { id: 2, label: "CORPORATE & MICE", class: "bubble-left" },
-    { id: 3, label: "LEISURE & DMC", class: "bubble-bottom" },
+    { id: 1, label: "SMART MOBILITY", class: "bubble-top" },
+    { id: 2, label: "FARE PAYMENTS", class: "bubble-left" },
+    { id: 3, label: "TRANSPORT DATA", class: "bubble-bottom" },
   ];
 
   return (
@@ -28,9 +28,9 @@ const PremiumHero = () => {
 
       <div className={`hero-content ${isVisible ? "is-visible" : ""}`}>
         <h1 className="hero-text">
-          <span className="line line-1">ON BOARD</span>
-          <span className="line line-2">ON TIME. ANYTIME</span>
-          <span className="line line-3">WORLDWIDE.</span>
+          <span className="line line-1">SMART TRANSPORT</span>
+          <span className="line line-2">DIGITAL PAYMENTS</span>
+          <span className="line line-3">MADE SIMPLE.</span>
         </h1>
       </div>
 
