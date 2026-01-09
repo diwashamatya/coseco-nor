@@ -1,45 +1,57 @@
-/* Blogs.css - Dark Theme */
+/* =========================================
+   BLOGS.CSS – FULL THEME CONTEXT VERSION
+========================================= */
 
-/* Global Variables */
+/* ===============================
+   THEME VARIABLE MAPPING
+================================ */
 :root {
-  /* Colors */
-  --bg-primary: #0a0a0a;
-  --bg-secondary: #151515;
-  --bg-tertiary: #1e1e1e;
-  --accent-primary: #0066cc;
-  --accent-secondary: #00c8ff;
-  --text-primary: #f0f0f0;
-  --text-secondary: #a0a0a0;
-  --text-muted: #757575;
-  --border-color: #2a2a2a;
+  /* BACKGROUNDS */
+  --bg-primary: var(--color-black);
+  --bg-secondary: var(--color-dark);
+  --bg-tertiary: color-mix(in srgb, var(--color-dark) 85%, var(--color-black));
+
+  /* TEXT */
+  --text-primary: var(--color-white);
+  --text-secondary: var(--color-gray);
+  --text-muted: color-mix(in srgb, var(--color-gray) 70%, transparent);
+
+  /* ACCENTS */
+  --accent-primary: var(--color-accent);
+  --accent-secondary: color-mix(in srgb, var(--color-accent) 70%, white);
+
+  /* BORDERS */
+  --border-color: color-mix(in srgb, var(--color-gray) 20%, transparent);
+
+  /* SHADOWS */
   --shadow-light: rgba(0, 0, 0, 0.3);
   --shadow-medium: rgba(0, 0, 0, 0.5);
-  
-  /* Typography */
-  --font-main: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* GLASS */
+  --glass-bg: var(--glass-bg);
+
+  /* TYPOGRAPHY */
+  --font-main: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-weight-normal: 400;
   --font-weight-medium: 500;
   --font-weight-bold: 700;
-  
-  /* Spacing */
+
+  /* SPACING */
   --space-sm: 0.5rem;
   --space-md: 1rem;
   --space-lg: 1.5rem;
   --space-xl: 2rem;
   --space-xxl: 3rem;
-  
-  /* Border Radius */
+
+  /* RADIUS */
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 12px;
-  
-  /* Transitions */
-  --transition-fast: 0.2s ease;
-  --transition-normal: 0.3s ease;
-  --transition-slow: 0.5s ease;
 }
 
-/* Base Styles */
+/* ===============================
+   BASE STYLES
+================================ */
 .blog-wrapper {
   background-color: var(--bg-primary);
   color: var(--text-primary);
@@ -48,13 +60,18 @@
   padding: 0;
   margin: 0;
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
-/* Blog Intro Section */
+/* ===============================
+   INTRO SECTION
+================================ */
 .blog-intro {
-  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+  background: linear-gradient(135deg, var(--bg-secondary), var(--bg-primary));
   padding: var(--space-xxl) var(--space-md);
   border-bottom: 1px solid var(--border-color);
+  position: relative;
+  z-index: 1;
 }
 
 .intro-content {
@@ -65,7 +82,11 @@
 
 .sub-heading {
   display: inline-block;
-  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+  background: linear-gradient(
+    90deg,
+    var(--accent-primary),
+    var(--accent-secondary)
+  );
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -84,7 +105,11 @@
 }
 
 .main-heading span {
-  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+  background: linear-gradient(
+    90deg,
+    var(--accent-primary),
+    var(--accent-secondary)
+  );
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -97,7 +122,9 @@
   color: var(--text-secondary);
 }
 
-/* Blog Grid */
+/* ===============================
+   BLOG GRID
+================================ */
 .blog-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -105,23 +132,21 @@
   max-width: 1200px;
   margin: var(--space-xxl) auto;
   padding: 0 var(--space-md);
+  position: relative;
+  z-index: 1;
 }
 
-/* Post Card */
+/* ===============================
+   POST CARD
+================================ */
 .post-card {
   background: var(--bg-secondary);
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: 0 4px 20px var(--shadow-light);
-  transition: all var(--transition-normal);
-  cursor: pointer;
   border: 1px solid var(--border-color);
-}
-
-.post-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 30px var(--shadow-medium);
-  border-color: rgba(0, 102, 204, 0.3);
+  cursor: pointer;
+  position: relative;
 }
 
 .post-media {
@@ -134,23 +159,17 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform var(--transition-slow);
-  opacity: 0;
-  transition: opacity 0.3s ease, transform 0.5s ease;
-}
-
-.post-card:hover .post-media img {
-  transform: scale(1.05);
 }
 
 .post-overlay {
   position: absolute;
   top: var(--space-md);
   left: var(--space-md);
+  z-index: 2;
 }
 
 .category-tag {
-  background: rgba(0, 0, 0, 0.7);
+  background: var(--glass-bg);
   color: var(--text-primary);
   padding: var(--space-sm) var(--space-md);
   border-radius: var(--radius-md);
@@ -158,7 +177,7 @@
   font-weight: var(--font-weight-medium);
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(6px);
 }
 
 .post-content {
@@ -170,7 +189,6 @@
   font-weight: var(--font-weight-bold);
   margin-bottom: var(--space-md);
   line-height: 1.3;
-  color: var(--text-primary);
 }
 
 .post-excerpt {
@@ -196,46 +214,64 @@
   color: var(--accent-primary);
   font-weight: var(--font-weight-medium);
   font-size: 0.9rem;
-  transition: color var(--transition-fast);
 }
 
-.post-card:hover .read-more {
-  color: var(--accent-secondary);
-}
-
-/* Modal Styles */
+/* ===============================
+   MODAL BACKDROP
+================================ */
 .modal-backdrop {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(10px);
+  inset: 0;
+  background: transparent;
   z-index: 1000;
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding: var(--space-md);
+  align-items: flex-start;
+  padding: var(--space-xl) var(--space-md);
+  overflow-y: auto;
+  backdrop-filter: blur(0);
+  transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
 }
 
+.modal-backdrop-open {
+  background: color-mix(in srgb, var(--color-black) 85%, transparent);
+  backdrop-filter: blur(5px);
+}
+
+/* ===============================
+   MODAL CONTAINER
+================================ */
 .modal-container {
   background: var(--bg-secondary);
   border-radius: var(--radius-lg);
   max-width: 800px;
   width: 100%;
   max-height: 90vh;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
   box-shadow: 0 20px 60px var(--shadow-medium);
   border: 1px solid var(--border-color);
   position: relative;
+  margin: auto;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
+.modal-container-open {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* ===============================
+   CLOSE BUTTON
+================================ */
 .close-btn {
   position: absolute;
   top: var(--space-md);
   right: var(--space-md);
-  background: rgba(0, 0, 0, 0.5);
+  background: color-mix(in srgb, var(--color-black) 60%, transparent);
   border: none;
   border-radius: 50%;
   width: 40px;
@@ -246,18 +282,20 @@
   color: var(--text-primary);
   cursor: pointer;
   z-index: 10;
-  transition: all var(--transition-fast);
-  backdrop-filter: blur(10px);
+  transition: background-color 0.2s ease;
 }
 
 .close-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  transform: rotate(90deg);
+  background: color-mix(in srgb, var(--color-black) 75%, transparent);
 }
 
+/* ===============================
+   MODAL SCROLL
+================================ */
 .modal-scroll-area {
-  height: 100%;
+  flex: 1;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
   scrollbar-color: var(--accent-primary) var(--bg-tertiary);
 }
@@ -275,9 +313,13 @@
   border-radius: 3px;
 }
 
+/* ===============================
+   MODAL CONTENT
+================================ */
 .modal-hero {
-  height: 300px;
-  overflow: hidden;
+  width: 100%;
+  height: 350px;
+  flex-shrink: 0;
 }
 
 .modal-hero img {
@@ -305,83 +347,99 @@
 }
 
 .modal-heading {
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: var(--font-weight-bold);
   margin-bottom: var(--space-lg);
   line-height: 1.2;
-  color: var(--text-primary);
 }
 
 .rich-text {
   color: var(--text-secondary);
-  line-height: 1.7;
+  line-height: 1.8;
   margin-bottom: var(--space-xl);
 }
 
 .rich-text p {
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-lg);
 }
 
+/* ===============================
+   MODAL ACTIONS
+================================ */
 .modal-actions {
   display: flex;
   justify-content: flex-end;
+  padding-top: var(--space-md);
 }
 
 .primary-button {
   display: inline-flex;
   align-items: center;
   gap: var(--space-sm);
-  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
-  color: white;
+  background: linear-gradient(
+    90deg,
+    var(--accent-primary),
+    var(--accent-secondary)
+  );
+  color: #fff;
   padding: var(--space-md) var(--space-lg);
   border-radius: var(--radius-md);
   text-decoration: none;
   font-weight: var(--font-weight-medium);
-  transition: all var(--transition-normal);
-  box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);
+  box-shadow: 0 4px 15px
+    color-mix(in srgb, var(--accent-primary) 40%, transparent);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .primary-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 102, 204, 0.5);
 }
 
-/* Body styles when modal is open */
-.modal-open {
+/* ===============================
+   BODY LOCK
+================================ */
+body.modal-open {
   overflow: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+.glass-card h3 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 10px;
 }
 
-/* Animation improvements */
-.post-card,
-.modal-backdrop,
-.modal-container {
-  will-change: transform, opacity;
-}
 
-/* Responsive adjustments */
+/* ===============================
+   RESPONSIVE
+================================ */
 @media (max-width: 768px) {
   .blog-grid {
     grid-template-columns: 1fr;
     gap: var(--space-md);
     margin: var(--space-xl) auto;
   }
-  
+
   .modal-container {
-    max-height: 95vh;
+    max-height: 100vh;
+    border-radius: 0;
+    margin: 0;
   }
-  
+
   .modal-hero {
-    height: 200px;
+    height: 250px;
   }
-  
+
   .modal-inner-content {
     padding: var(--space-lg);
   }
-  
+
   .modal-heading {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
   }
-  
+
   .modal-meta {
     flex-direction: column;
     gap: var(--space-sm);
@@ -392,12 +450,12 @@
   .blog-intro {
     padding: var(--space-xl) var(--space-md);
   }
-  
-  .modal-container {
-    border-radius: var(--radius-md);
-  }
-  
+
   .modal-hero {
-    height: 150px;
+    height: 200px;
+  }
+
+  .modal-backdrop {
+    padding: var(--space-md);
   }
 }

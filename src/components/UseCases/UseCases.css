@@ -1,483 +1,110 @@
-/* UseCases.css - Premium Dark Theme with Animations */
-
-.usecases-section {
-  padding: 120px 10%;
-  background: linear-gradient(135deg, #0a0a0f 0%, #0d1117 100%);
+.serve-section {
+  padding: 120px 0;
+  max-width: 1400px;
+  margin: 0 auto;
   color: #ffffff;
-  position: relative;
-  overflow: hidden;
 }
 
-/* Animated Background Effects */
-.usecases-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, 
-    transparent, 
-    rgba(99, 102, 241, 0.5), 
-    transparent
-  );
-  animation: scanningLine 6s ease-in-out infinite;
-}
-
-.usecases-section::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, 
-    transparent, 
-    rgba(139, 92, 246, 0.3), 
-    transparent
-  );
-  animation: scanningLine 4s ease-in-out 1s infinite reverse;
-}
-
-@keyframes scanningLine {
-  0%, 100% {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-}
-
-/* Centered Title with Animation */
 .section-title {
   text-align: center;
-  font-size: 3.2rem;
+  font-size: clamp(32px, 5vw, 56px);
   font-weight: 800;
-  margin-bottom: 60px;
-  position: relative;
-  opacity: 0;
-  animation: titleReveal 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  margin-bottom: 80px;
 }
 
-@keyframes titleReveal {
-  from {
-    opacity: 0;
-    transform: translateY(40px) scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-.section-title::before {
-  content: '';
-  position: absolute;
-  bottom: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100px;
-  height: 3px;
-  background: linear-gradient(90deg, 
-    rgba(99, 102, 241, 0.8), 
-    rgba(139, 92, 246, 0.8)
-  );
-  border-radius: 2px;
-  animation: underlinePulse 3s ease-in-out infinite;
-}
-
-@keyframes underlinePulse {
-  0%, 100% {
-    width: 100px;
-    opacity: 1;
-  }
-  50% {
-    width: 150px;
-    opacity: 0.7;
-  }
-}
-
-/* Gradient Text Effect */
 .section-title span {
-  background: linear-gradient(135deg, 
-    #ffffff 0%, 
-    #a8a8a8 50%, 
-    #ffffff 100%
-  );
+  background: linear-gradient(90deg, #fff, #888);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text;
-  background-size: 200% auto;
-  animation: gradientFlow 8s ease infinite;
 }
 
-@keyframes gradientFlow {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-/* Enhanced Grid Layout */
-.usecases-grid {
+.serve-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 30px;
-  perspective: 1000px;
 }
 
-/* Premium Animated Cards */
-.usecase-card {
-  padding: 40px 30px;
-  background: linear-gradient(
-    145deg,
-    rgba(255, 255, 255, 0.05) 0%,
-    rgba(255, 255, 255, 0.02) 100%
-  );
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  
-  text-align: center;
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.9);
-  
+.serve-card {
   position: relative;
+  padding: 50px 40px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 30px;
   overflow: hidden;
-  cursor: pointer;
-  
-  transform: translateY(60px) rotateX(5deg);
-  opacity: 0;
-  
-  animation: cardFloatIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  
-  /* Glass morphism effect */
-  box-shadow: 
-    0 20px 40px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05),
-    0 0 0 1px rgba(255, 255, 255, 0.03);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.4s ease;
 }
 
-/* Staggered Card Animations */
-.usecase-card:nth-child(1) { animation-delay: 0.1s; }
-.usecase-card:nth-child(2) { animation-delay: 0.2s; }
-.usecase-card:nth-child(3) { animation-delay: 0.3s; }
-.usecase-card:nth-child(4) { animation-delay: 0.4s; }
-
-@keyframes cardFloatIn {
-  to {
-    transform: translateY(0) rotateX(0);
-    opacity: 1;
-  }
+.serve-card:hover {
+  border-color: #6366f1;
 }
 
-/* Hover Animation Effects */
-.usecase-card:hover {
-  transform: translateY(-12px) scale(1.03);
-  border: 1px solid transparent;
-  background: linear-gradient(
-    145deg,
-    rgba(255, 255, 255, 0.08) 0%,
-    rgba(255, 255, 255, 0.04) 100%
-  );
-  
-  box-shadow: 
-    0 40px 80px rgba(99, 102, 241, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    0 0 0 1px rgba(99, 102, 241, 0.1);
+.card-index {
+  font-family: monospace;
+  color: #6366f1;
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 30px;
+  letter-spacing: 2px;
 }
 
-/* Gradient Border Animation on Hover */
-.usecase-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 20px;
-  padding: 1px;
-  background: linear-gradient(
-    135deg,
-    rgba(99, 102, 241, 0.4),
-    rgba(168, 85, 247, 0.4),
-    rgba(99, 102, 241, 0.4)
-  );
-  -webkit-mask: 
-    linear-gradient(#000 0 0) content-box, 
-    linear-gradient(#000 0 0);
-  mask: 
-    linear-gradient(#000 0 0) content-box, 
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  z-index: -1;
+.serve-card h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
-.usecase-card:hover::before {
-  opacity: 1;
+.serve-description {
+  color: #a0a0a0;
+  line-height: 1.7;
+  font-size: 16px;
+  margin-bottom: 30px;
 }
 
-/* Animated Background Pattern */
-.usecase-card::after {
-  content: '';
+.serve-cta {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #6366f1;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: gap 0.3s ease;
+}
+
+.serve-cta:hover {
+  gap: 15px;
+}
+
+/* Hover Glow Effect */
+.card-glow {
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background: 
-    radial-gradient(
-      circle at 20% 80%,
-      rgba(99, 102, 241, 0.05) 0%,
-      transparent 50%
-    ),
-    radial-gradient(
-      circle at 80% 20%,
-      rgba(168, 85, 247, 0.05) 0%,
-      transparent 50%
-    );
-  border-radius: 20px;
-  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+    rgba(99, 102, 241, 0.1) 0%, 
+    transparent 60%
+  );
   opacity: 0;
   transition: opacity 0.4s ease;
+  pointer-events: none;
 }
 
-.usecase-card:hover::after {
+.serve-card:hover .card-glow {
   opacity: 1;
-  animation: patternFloat 20s linear infinite;
-}
-
-@keyframes patternFloat {
-  0% {
-    background-position: 0% 0%, 100% 100%;
-  }
-  100% {
-    background-position: 100% 100%, 0% 0%;
-  }
-}
-
-/* Icon/Number Indicator */
-.usecase-card::before {
-  content: '';
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 50px;
-  height: 50px;
-  background: linear-gradient(135deg, 
-    rgba(99, 102, 241, 0.1), 
-    rgba(168, 85, 247, 0.1)
-  );
-  border-radius: 12px;
-  opacity: 0;
-  transition: all 0.4s ease;
-}
-
-.usecase-card:hover::before {
-  opacity: 1;
-  animation: iconPulse 2s ease-in-out infinite;
-}
-
-@keyframes iconPulse {
-  0%, 100% {
-    transform: translateX(-50%) scale(1);
-    opacity: 0.5;
-  }
-  50% {
-    transform: translateX(-50%) scale(1.1);
-    opacity: 0.8;
-  }
-}
-
-/* Number inside indicator */
-.usecase-card::after {
-  content: attr(data-index);
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: rgba(99, 102, 241, 0.8);
-  opacity: 0;
-  transition: all 0.4s ease;
-  z-index: 2;
-}
-
-.usecase-card:hover::after {
-  opacity: 1;
-  animation: numberBounce 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-@keyframes numberBounce {
-  0%, 100% {
-    transform: translateX(-50%) scale(1);
-  }
-  50% {
-    transform: translateX(-50%) scale(1.2);
-  }
-}
-
-/* Text Content Animation */
-.usecase-card span {
-  display: block;
-  position: relative;
-  z-index: 2;
-  transition: all 0.3s ease;
-}
-
-.usecase-card:hover span {
-  color: #ffffff;
-  text-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
-}
-
-/* Subtle Description (Optional - if you want to add) */
-.usecase-description {
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.6);
-  margin-top: 12px;
-  line-height: 1.6;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: all 0.4s ease;
-}
-
-.usecase-card:hover .usecase-description {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* CTA Button (Optional - if you want to add) */
-.usecase-cta {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 10px 24px;
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
-  color: white;
-  text-decoration: none;
-  border-radius: 12px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  position: relative;
-  overflow: hidden;
-  transform: translateY(10px);
-  opacity: 0;
-  transition: all 0.3s ease;
-}
-
-.usecase-card:hover .usecase-cta {
-  transform: translateY(0);
-  opacity: 1;
-  animation: buttonSlideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-@keyframes buttonSlideUp {
-  from {
-    transform: translateY(10px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-.usecase-cta:hover {
-  transform: scale(1.05);
-  box-shadow: 0 12px 32px rgba(99, 102, 241, 0.4);
-}
-
-/* Responsive Design */
-@media (max-width: 1200px) {
-  .usecases-section {
-    padding: 100px 5%;
-  }
-  
-  .section-title {
-    font-size: 2.8rem;
-  }
 }
 
 @media (max-width: 768px) {
-  .usecases-section {
-    padding: 80px 5%;
-  }
-  
-  .section-title {
-    font-size: 2.2rem;
-  }
-  
-  .usecases-grid {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
-  }
-  
-  .usecase-card {
-    padding: 35px 25px;
-    font-size: 1.1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .usecases-section {
-    padding: 60px 5%;
-  }
-  
-  .section-title {
-    font-size: 1.8rem;
-  }
-  
-  .usecase-card {
-    padding: 30px 20px;
-    font-size: 1rem;
-  }
-  
-  .usecases-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-}
-
-/* Loading Animation */
-.usecase-card.loading {
-  position: relative;
-  overflow: hidden;
-}
-
-.usecase-card.loading::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.05),
-    transparent
-  );
-  animation: shimmer 1.5s infinite;
-}
-
-@keyframes shimmer {
-  0% {
-    left: -100%;
-  }
-  100% {
-    left: 100%;
+  .serve-card {
+    padding: 40px 30px;
   }
 }

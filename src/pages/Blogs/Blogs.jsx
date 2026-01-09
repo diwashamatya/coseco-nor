@@ -4,7 +4,6 @@ import { ExternalLink, X, ArrowRight, Calendar, Tag } from "lucide-react";
 import "./Blogs.css";
 import { POSTS } from "../../data/Posts";
 
-
 const PostCard = ({ post, onOpen, index }) => {
   return (
     <motion.div
@@ -15,7 +14,6 @@ const PostCard = ({ post, onOpen, index }) => {
       whileHover={{ y: -8 }}
       className="post-card"
       onClick={() => onOpen(post)}
-      style={{ willChange: "transform" }}
     >
       <div className="post-media">
         <img
@@ -42,18 +40,7 @@ const PostCard = ({ post, onOpen, index }) => {
   );
 };
 
-const PostModal = ({ post, onClose }) => {
-  useEffect(() => {
-    const originalStyle = window.getComputedStyle(document.body).overflow;
-    document.body.style.overflow = "hidden";
-    document.body.classList.add("modal-open");
-
-    return () => {
-      document.body.style.overflow = originalStyle;
-      document.body.classList.remove("modal-open");
-    };
-  }, []);
-
+const PostModal = ({ post, onClose, isOpen }) => {
   useEffect(() => {
     const handleEsc = (e) => {
       if (e.key === "Escape") onClose();
@@ -68,27 +55,13 @@ const PostModal = ({ post, onClose }) => {
   };
 
   return (
-    <motion.div
-      className="modal-backdrop"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.2 }}
+    <div
+      className={`modal-backdrop ${isOpen ? "modal-backdrop-open" : ""}`}
       onClick={onClose}
     >
-      <motion.div
-        className="modal-container"
-        initial={{ scale: 0.9, opacity: 0, y: 20 }}
-        animate={{ scale: 1, opacity: 1, y: 0 }}
-        exit={{ scale: 0.9, opacity: 0, y: 20 }}
-        transition={{
-          type: "spring",
-          damping: 25,
-          stiffness: 300,
-          mass: 0.8,
-        }}
+      <div
+        className={`modal-container ${isOpen ? "modal-container-open" : ""}`}
         onClick={(e) => e.stopPropagation()}
-        onScroll={handleScroll}
       >
         <button
           className="close-btn"
@@ -136,25 +109,37 @@ const PostModal = ({ post, onClose }) => {
             </div>
           </div>
         </div>
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 };
 
 export default function BlogApp() {
   const [selectedPost, setSelectedPost] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
 
   const handleOpenModal = (post) => {
     setSelectedPost(post);
-    setIsModalOpen(true);
+    setModalVisible(true);
+    // Small delay to ensure DOM is updated before adding open class
+    setTimeout(() => {
+      setIsModalOpen(true);
+      // Lock body scroll
+      document.body.style.overflow = "hidden";
+      document.body.classList.add("modal-open");
+    }, 10);
   };
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
-    // Clear post after animation completes
+    // Wait for CSS transition to complete before removing from DOM
     setTimeout(() => {
+      setModalVisible(false);
       setSelectedPost(null);
+      // Restore body scroll
+      document.body.style.overflow = "";
+      document.body.classList.remove("modal-open");
     }, 300);
   };
 
@@ -188,15 +173,14 @@ export default function BlogApp() {
         ))}
       </div>
 
-      <AnimatePresence mode="wait">
-        {isModalOpen && selectedPost && (
-          <PostModal
-            key={selectedPost.id}
-            post={selectedPost}
-            onClose={handleCloseModal}
-          />
-        )}
-      </AnimatePresence>
+      {modalVisible && selectedPost && (
+        <PostModal
+          key={selectedPost.id}
+          post={selectedPost}
+          onClose={handleCloseModal}
+          isOpen={isModalOpen}
+        />
+      )}
     </div>
   );
 }

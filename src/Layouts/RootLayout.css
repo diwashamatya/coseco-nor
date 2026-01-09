@@ -1,32 +1,4 @@
-:root {
-  --color-black: #000000;
-  --color-dark: #111111;
-  --color-white: #ffffff;
-  --color-gray: #888888;
-  --color-accent: #00f2ff;
-  /* Glass effect: Lower alpha (0.5) makes it more transparent */
-  --glass-bg: rgba(0, 0, 0, 0.5); 
-  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Reset and base styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-  background: var(--color-black);
-  color: var(--color-white);
-  overflow-x: hidden;
-}
-
-.layout-container {
-  min-height: 100vh;
-  position: relative;
-}
+/* RootLayout.css */
 
 /* ===== NAVBAR ===== */
 .navbar {
@@ -36,15 +8,11 @@ body {
   width: 100%;
   padding: 20px 40px;
   z-index: 1000;
-
   transition: opacity 0.3s ease, visibility 0.3s ease;
-
-  background: var(--glass-bg); /* Uses your rgba(0, 0, 0, 0.5) */
+  background: var(--glass-bg);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Optional: adds a subtle "edge" */
-  /* ------------------------------ */
-
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   transition: opacity 0.3s ease, visibility 0.3s ease, background 0.3s ease;
 }
 
@@ -95,17 +63,17 @@ body {
   color: var(--color-accent);
 }
 
-
-    .nav-actions {
+.nav-actions {
   display: flex;
   align-items: center;
-  gap: 15px; /* Spacing between theme, lang, and burger */
-  margin-left: auto; /* Pushes everything to the right */
+  gap: 15px;
+  margin-left: auto;
 }
+
 .icon-btn {
   background: none;
   border: none;
-  color: white; /* Matches your navbar text */
+  color: var(--color-white);
   cursor: pointer;
   padding: 5px;
   display: flex;
@@ -114,40 +82,68 @@ body {
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-/* Hover Animation for the new icons */
 .icon-btn:hover {
   transform: scale(1.1);
   opacity: 0.8;
 }
-/* Specific animation for Theme (Rotate Sun) */
-.theme-toggle:hover svg {
-  transform: rotate(45deg);
-  transition: transform 0.5s ease;
+
+/* Theme Selector Styles */
+.theme-selector {
+  position: relative;
+  display: inline-block;
 }
 
-/* Burger Animation on Hover (from previous step) */
-.burger-btn:hover .line-top { transform: translateY(2px); }
-.burger-btn:hover .line-bot { transform: translateY(-2px); }
+.theme-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  padding: 10px;
+  min-width: 120px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 1001;
+}
 
-/* Ensure icons are visible on mobile */
+.theme-selector:hover .theme-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
 
-/* ===== BURGER BUTTON ===== */
-.burger-btn {
-  background: none;
+.theme-option {
+  background: transparent;
   border: none;
-  width: 40px;
-  height: 40px;
+  color: var(--color-white);
+  padding: 8px 12px;
+  width: 100%;
+  text-align: left;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  text-transform: capitalize;
 }
 
+.theme-option:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.theme-option.active {
+  background: var(--color-accent);
+  color: var(--color-black);
+  font-weight: 600;
+}
+
+/* Burger Button */
 .burger-btn {
   background: transparent;
   border: none;
   cursor: pointer;
-  color: white; /* Sets the SVG color */
+  color: var(--color-white);
   padding: 8px;
   display: flex;
   align-items: center;
@@ -159,7 +155,6 @@ body {
   transform-origin: center;
 }
 
-/* Hover Animations */
 .burger-btn:hover .line-top {
   transform: translateY(2px);
 }
@@ -168,29 +163,21 @@ body {
   transform: translateY(-2px);
 }
 
-/* Optional: Make the middle line slightly shorter on hover */
 .burger-btn:hover .line-mid {
   opacity: 0.7;
 }
 
-/* ===== FULLSCREEN MODAL (THE GLASS LAYER) ===== */
+/* ===== FULLSCREEN MODAL ===== */
 .fullscreen-modal {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  
-  /* The semi-transparent layer */
   background: var(--glass-bg) !important;
-  
-  /* The blur effect */
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
-  
-  /* Remove borders that cut the screen */
   border: none !important;
-  
   z-index: 2000;
   opacity: 0;
   visibility: hidden;
@@ -203,7 +190,6 @@ body {
   visibility: visible;
 }
 
-/* Modal Close Button */
 .modal-close-btn {
   position: fixed;
   top: 30px;
@@ -225,14 +211,12 @@ body {
   opacity: 0.6;
 }
 
-/* ===== MODAL INTERNAL CONTENT (NO BOXES) ===== */
 .modal-content {
   width: 100%;
   min-height: 100vh;
   padding: 100px 40px;
   display: flex;
   flex-direction: column;
-  /* Ensure no background overrides the glass */
   background: transparent !important;
   border: none !important;
 }
@@ -247,7 +231,6 @@ body {
   background: transparent !important;
 }
 
-/* Menu Grid - Transparent */
 .menu-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -304,14 +287,47 @@ body {
   color: var(--color-accent);
 }
 
-/* ===== MAIN CONTENT ===== */
-.main-content {
- padding-top:0;
-
- 
+/* Modal Theme Toggle */
+.modal-theme-toggle {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 50px;
+  flex-wrap: wrap;
 }
 
-/* ===== RESPONSIVE ===== */
+.modal-theme-toggle button {
+  background: var(--color-accent);
+  color: var(--color-black);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-transform: capitalize;
+}
+
+.modal-theme-toggle button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.modal-theme-toggle button.active {
+  background: var(--color-white);
+  color: var(--color-black);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Main Content */
+.main-content {
+  padding-top: 0;
+  background: var(--color-black);
+  transition: background-color 0.3s ease;
+}
+
+/* Responsive */
 @media (max-width: 1024px) {
   .desktop-nav { display: none; }
   .menu-grid {
@@ -319,15 +335,24 @@ body {
     gap: 40px;
     text-align: left;
   }
+  
+  .theme-dropdown {
+    right: -50px;
+  }
 }
 
 @media (max-width: 768px) {
   .navbar { padding: 20px; }
   .modal-content { padding: 80px 25px; }
   .modal-close-btn { top: 20px; right: 20px; }
-}
-@media (max-width: 768px) {
-  .nav-actions {
-    gap: 10px;
+  .nav-actions { gap: 10px; }
+  
+  .modal-theme-toggle {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .modal-theme-toggle button {
+    width: 200px;
   }
 }

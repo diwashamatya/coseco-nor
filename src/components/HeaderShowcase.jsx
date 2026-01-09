@@ -73,6 +73,11 @@ const HeaderShowcase = () => {
 
   return (
     <div className="showcase-container">
+
+      <div className="showcase-header">
+        <span className="showcase-subtitle">Our Expertise</span>
+        <h1 className="showcase-main-title">Modernizing <span>Global Transit</span></h1>
+      </div>
       {/* Header Tabs */}
       <div className="header-tabs">
         {headers.map((header, index) => (
