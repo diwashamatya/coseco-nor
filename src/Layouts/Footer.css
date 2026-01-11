@@ -1,9 +1,10 @@
 .footer {
   position: relative;
-  background: #050505;
+  background: var(--color-dark); /* Changed from #050505 to use variable */
   padding: 100px 0 40px 0;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
   overflow: hidden;
+  transition: background-color 0.3s ease, border-color 0.3s ease; /* Added transitions */
 }
 
 /* Subtle cyan glow behind the logo area */
@@ -17,6 +18,7 @@
   filter: blur(150px);
   opacity: 0.05;
   pointer-events: none;
+  transition: background-color 0.3s ease; /* Added transition */
 }
 
 .footer-container {
@@ -38,6 +40,7 @@
   font-weight: 800;
   letter-spacing: -1px;
   margin-bottom: 20px;
+  color: var(--color-white); /* Added for consistency */
 }
 
 .footer-logo span {
@@ -102,9 +105,15 @@
 .footer-input-group input {
   background: transparent;
   border: none;
-  color: white;
+  color: var(--color-white); /* Changed from white to use variable */
   width: 100%;
   outline: none;
+  transition: color 0.3s ease;
+}
+
+.footer-input-group input::placeholder {
+  color: var(--color-gray);
+  opacity: 0.7;
 }
 
 .footer-input-group button {
@@ -113,6 +122,11 @@
   color: var(--color-accent);
   cursor: pointer;
   font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.footer-input-group button:hover {
+  opacity: 0.8;
 }
 
 /* Bottom Bar */
@@ -124,6 +138,7 @@
   border-top: 1px solid rgba(255, 255, 255, 0.05);
   font-size: 12px;
   color: rgba(255, 255, 255, 0.3);
+  transition: border-color 0.3s ease;
 }
 
 .footer-legal {
@@ -134,6 +149,11 @@
 .footer-legal a {
   color: inherit;
   text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-legal a:hover {
+  color: var(--color-accent);
 }
 
 /* Responsive */
@@ -147,10 +167,17 @@
 @media (max-width: 600px) {
   .footer-grid {
     grid-template-columns: 1fr;
+    gap: 30px;
   }
+  
   .footer-bottom {
     flex-direction: column;
     gap: 20px;
     text-align: center;
+  }
+  
+  .footer-legal {
+    flex-direction: column;
+    gap: 10px;
   }
 }

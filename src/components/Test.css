@@ -7,9 +7,10 @@
 
 .hero-container {
   padding-top: 5%;
-  background-color: var(--bg-dark);
+  background-color: var(---color-white);
   padding-bottom: 10%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
@@ -27,8 +28,8 @@
   z-index: 0;
   opacity: 0.15;
 }
-.glow-1 { top: -10%; left: -10%; background: var(--accent-blue); }
-.glow-2 { bottom: -10%; right: -10%; background: #6366f1; }
+.glow-1 { top: -10%; left: -10%; background: var(--color-accent); }
+.glow-2 { bottom: -10%; right: -10%; background: var(--color-accent); opacity: 0.1 ;}
 
 /* --- TEXT ANIMATION --- */
 .hero-text {
@@ -36,7 +37,7 @@
   font-weight: 900;
   line-height: 0.85;
   letter-spacing: -0.04em;
-  color: var(--text-main);
+  color: var(--color-white);
   position: relative;
   z-index: 2;
 }
@@ -49,7 +50,7 @@
   transition: all 1.2s cubic-bezier(0.2, 1, 0.3, 1);
 }
 
-.line-3 { margin-left: 15vw; color: rgba(255,255,255,0.4); } /* Muted "Worldwide" */
+.line-3 { margin-left: 15vw; color: var(--color-gray); } /* Muted "Worldwide" */
 
 .is-visible .line {
   opacity: 1;
@@ -61,6 +62,63 @@
 .is-visible .line-2 { transition-delay: 0.3s; }
 .is-visible .line-3 { transition-delay: 0.5s; }
 
+/* --- BUTTON ANIMATION --- */
+.hero-action {
+  margin-top: 3rem;}
+
+.btn_name{
+  color: var(---color-white);
+}
+
+.get-started-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 1.2rem 3rem;
+  background-color: var(--color-accent);
+  color: #000; /* Usually dark text on bright accent is most readable */
+  border: none;
+  border-radius: 10px;
+  font-weight: 40;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 10px 30px -10px var(--color-accent);
+}
+/* The Animated Icon */
+.get-started-btn svg {
+  transition: transform 0.3s ease;
+}
+
+/* Hover Effects */
+.get-started-btn:hover {
+  transform: scale(1.05) translateY(-3px);
+  background-color: var(--color-white);
+  color: var(--color-black);
+  box-shadow: 0 15px 35px -10px rgba(0,0,0,0.3);
+}
+
+.get-started-btn:hover svg {
+  transform: translateX(8px);
+}
+
+/* Pulse Ripple Animation */
+.get-started-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  border: 2px solid var(--color-accent);
+  animation: ripple 2s infinite;
+  z-index: -1;
+}
+
+@keyframes ripple {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
 /* --- BUBBLE GLASS DESIGN --- */
 .bubble-wrapper {
   position: absolute;
@@ -116,7 +174,7 @@
 .bubble-label {
   position: relative;
   z-index: 5;
-  color: white;
+  color: var(---color-white);
   font-size: clamp(0.6rem, 1vw, 0.75rem); /* Smaller text on small screens */
   font-size: 0.75rem;
   font-weight: 700;

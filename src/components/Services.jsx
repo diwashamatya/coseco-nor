@@ -138,7 +138,7 @@ export default function LinearGrid() {
 
   return (
     <>
-      <div >
+      <div>
         <header className="header">
           <h1>Made for modern teams</h1>
           <p>

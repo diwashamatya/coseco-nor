@@ -1,0 +1,92 @@
+/* Container Background */
+.why-choose {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  background-color: var(--color-black); /* Cloud Gray in Light, Deep Navy in DarkBlue */
+}
+
+/* Main Heading */
+.section-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 3rem;
+  color: var(--color-white); /* Midnight Navy in Light, Pure White in Dark */
+}
+.brand-highlight {
+  /* This ensures the span treats the variable as its own */
+  display: inline-block; 
+  
+  /* Force the color to use the theme token */
+  color: var(--color-accent) !important;
+  
+  /* Reset any text-fill or background-clip from previous attempts */
+  -webkit-text-fill-color: initial !important;
+  background: none !important;
+  
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+/* Grid Layout */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+}
+
+/* Cards */
+.feature-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  background: var(--glass-bg);
+  border-radius: 12px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  
+  /* Subtle border to help visibility in dark/darkBlue modes */
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  
+  /* Smooth hover effect */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.feature-card:hover {
+  transform: translateY(-5px);
+  /* Slightly stronger shadow on hover for a "lifted" feel */
+  box-shadow: rgba(99, 99, 99, 0.3) 0px 5px 15px 0px;
+}
+/* Icons */
+.icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 1.5rem;
+  color: var(--color-accent);
+}
+
+/* Card Titles */
+.feature-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--color-white);
+}
+
+/* Card Descriptions */
+.feature-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-gray); /* Slate Gray in Light, Cool Slate in Dark */
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .features-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .features-grid { grid-template-columns: 1fr; }
+  .section-title { font-size: 2rem; }
+}

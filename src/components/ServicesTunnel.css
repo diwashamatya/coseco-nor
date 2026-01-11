@@ -1,0 +1,289 @@
+.services-tunnel {
+  background-color: #0a0a0a;
+  color: white;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.scroll-container {
+  position: relative;
+}
+
+.tunnel-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4338ca 100%);
+  z-index: 0;
+}
+
+.tunnel-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 80px 60px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.subtitle {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #6366f1;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.main-title {
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.accent-title {
+  background: linear-gradient(to right, #6366f1, #a5b4fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.scroll-indicator {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 40px;
+}
+
+.scroll-indicator span {
+  font-size: 12px;
+  color: #94a3b8;
+  letter-spacing: 1px;
+}
+
+.scroll-line {
+  width: 60px;
+  height: 1px;
+  background: #94a3b8;
+}
+
+.tunnel-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  perspective: 1000px;
+}
+
+.tunnel-card {
+  position: absolute;
+  width: 900px;
+  height: 400px;
+  background: rgba(30, 41, 59, 0.85);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(99, 102, 241, 0.1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  will-change: transform, opacity;
+}
+
+.card-inner {
+  display: flex;
+  height: 100%;
+}
+
+.card-image-side {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.tunnel-card:hover .service-image {
+  transform: scale(1.05);
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(67, 56, 202, 0.4) 0%, transparent 50%);
+}
+
+.card-number {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #6366f1;
+  font-family: monospace;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 8px 16px;
+  border-radius: 20px;
+  backdrop-filter: blur(5px);
+}
+
+.card-content-side {
+  flex: 1;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.service-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: white;
+  line-height: 1.2;
+}
+
+.service-description {
+  font-size: 18px;
+  color: #cbd5e1;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.learn-more-btn {
+  background: transparent;
+  color: #6366f1;
+  border: 2px solid #6366f1;
+  padding: 12px 30px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  align-self: flex-start;
+  letter-spacing: 0.5px;
+}
+
+.learn-more-btn:hover {
+  background: #6366f1;
+  color: white;
+  transform: translateX(5px);
+}
+
+.learn-more-btn span {
+  transition: transform 0.3s ease;
+}
+
+.learn-more-btn:hover span {
+  transform: translateX(5px);
+}
+
+.vignette-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, transparent 30%, rgba(10, 10, 10, 0.8) 100%);
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .tunnel-card {
+    width: 700px;
+    height: 350px;
+  }
+  
+  .service-title {
+    font-size: 24px;
+  }
+  
+  .service-description {
+    font-size: 16px;
+  }
+  
+  .tunnel-header {
+    padding: 60px 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .tunnel-card {
+    width: 90%;
+    height: auto;
+    max-height: 500px;
+    flex-direction: column;
+  }
+  
+  .card-inner {
+    flex-direction: column;
+  }
+  
+  .card-image-side {
+    height: 200px;
+  }
+  
+  .card-content-side {
+    padding: 30px;
+  }
+  
+  .service-title {
+    font-size: 20px;
+  }
+  
+  .service-description {
+    font-size: 14px;
+  }
+  
+  .tunnel-header {
+    padding: 40px 20px;
+  }
+  
+  .main-title {
+    font-size: 32px;
+  }
+}
+
+/* Animation for tunnel effect */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.tunnel-card {
+  animation: float 6s ease-in-out infinite;
+  animation-delay: calc(var(--index) * 0.5s);
+}

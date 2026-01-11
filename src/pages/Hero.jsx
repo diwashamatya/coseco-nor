@@ -8,6 +8,7 @@ import Test from "../components/Test";
 import UseCases from "../components/UseCases/UseCases";
 import PerspectiveScroll from "../components/PerspectiveScroll";  
 import Features from "../components/Features/Features";
+import WhyChooseUs from "../components/Shared/WhyChooseUS/WhyChooseUs";  
 
 
 const Hero = () => {
@@ -17,6 +18,7 @@ const Hero = () => {
      
       <Test />
       {/* <CosecoServices /> */}
+      <WhyChooseUs />
       <PartnersMarquee />
       
       <HeaderShowcase />

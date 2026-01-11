@@ -1,0 +1,51 @@
+.divider-container {
+   
+  width: 100%;
+  max-width: 1400px;
+  margin-top: 10% ; /* Adjust vertical spacing here */
+  padding: 0 10%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.base-line {
+  height: 1px;
+  background: linear-gradient(
+    90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.1) 20%, 
+    rgba(255, 255, 255, 0.1) 80%, 
+    transparent 100%
+  );
+  position: relative;
+}
+
+.scanner-dot {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 150px;
+  height: 2px;
+  background: linear-gradient(
+    90deg, 
+    transparent, 
+    #6366f1, 
+    #8b5cf6, 
+    transparent
+  );
+  box-shadow: 0 0 15px rgba(99, 102, 241, 0.8);
+}
+/* Mobile Optimization for Animated Divider */
+@media (max-width: 768px) {
+  .divider-container {
+    margin: 40px auto; /* Tighter spacing between sections */
+    padding: 0 5%; /* Wider line on smaller screens */
+  }
+
+  .scanner-dot {
+    width: 80px; /* Shorter glow trail for mobile */
+    box-shadow: 0 0 10px rgba(99, 102, 241, 0.6);
+  }
+}
